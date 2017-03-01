@@ -1,5 +1,6 @@
 import json
 import datetime
+from books.models import Publisher
 from django.http import HttpResponse
 from django.http import JsonResponse
 
@@ -18,3 +19,6 @@ def current_datetime(request):
 	now = datetime.datetime.now()
 	html = "ServerTime is %s." %now
 	return HttpResponse(html)
+
+def giveAllPublishers(request):
+	return JsonResponse(dict(publisher1=list(Publisher.objects.values())))
