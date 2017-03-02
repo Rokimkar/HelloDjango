@@ -1,6 +1,7 @@
 import json
 import datetime
 from books.models import Publisher
+from books.models import BooK
 from django.http import HttpResponse
 from django.http import JsonResponse
 
@@ -21,4 +22,7 @@ def current_datetime(request):
 	return HttpResponse(html)
 
 def giveAllPublishers(request):
-	return JsonResponse(dict(publisher1=list(Publisher.objects.values())))
+	return JsonResponse(dict(publishers=list(Publisher.objects.values())))
+
+def giveAllBooks(request):
+	return JsonResponse(dict(books=list(BooK.objects.values())))
