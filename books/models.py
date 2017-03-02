@@ -10,7 +10,7 @@ class Publisher(models.Model):
 	city = models.CharField(max_length=60)
 	state_province = models.CharField(max_length=30)
 	country = models.CharField(max_length=50)
-	website = models.URLField()
+	website = models.URLField(blank = True)
 
 
 	def __str__(self):
@@ -19,7 +19,7 @@ class Publisher(models.Model):
 class Author(models.Model):
 	first_name = models.CharField(max_length=30)
 	last_name = models.CharField(max_length=40)
-	email = models.URLField()
+	email = models.URLField(blank = True)
 	def __str__(self):
 		return u'%s %s' %(self.first_name,self.last_name)
 
@@ -27,7 +27,7 @@ class BooK(models.Model):
 	title = models.CharField(max_length=100)
 	authors = models.ManyToManyField(Author)
 	publisher = models.ForeignKey(Publisher)
-	publication_date = models.DateField()
+	publication_date = models.DateField(blank = True)
 	def __str__(self):
 		return self.title
 
