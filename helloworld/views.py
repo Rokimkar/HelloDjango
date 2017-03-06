@@ -17,12 +17,16 @@ def helloWorld(request):
 	return JsonResponse(data)
 
 def current_datetime(request):
+
 	now = datetime.datetime.now()
 	html = "ServerTime is %s." %now
-	return HttpResponse(html)
+	return JsonResponse(dict(publishers=list(request.META)))
+	#return HttpResponse(html)
 
 def giveAllPublishers(request):
-	return JsonResponse(dict(publishers=list(Publisher.objects.values())))
+	if request.POST:
+		return JsonResponse(dict(publishers=list(Publisher.objects.values())))
+	return JsonResponse(dict(data))
 
 def giveAllBooks(request):
 	return JsonResponse(dict(books=list(BooK.objects.values())))
